@@ -23,7 +23,7 @@ $ doker compse build
 $ docker compose up -d 
 ```
 
-#### dockerコンテナの中で、必要なファイルの生成を行う
+#### dockerコンテナの中で、必要なファイルの生成, migrationを行う
 ```
 $ docker compose exec app bash
 $ composer install
