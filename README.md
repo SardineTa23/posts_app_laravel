@@ -1,4 +1,4 @@
-# laravel_enviroment
+# posts_app_laravel
 
 ## 開発環境
  - PHP 8.0
