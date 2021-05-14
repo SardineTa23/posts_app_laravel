@@ -1,5 +1,12 @@
 # laravel_enviroment
 
+## 開発環境
+ - PHP 8.0
+ - Laravel Framework 8.41.0
+ - niginx 1.18.0
+ - MySQL 8.0.25
+ - docker
+ - docker-compose 3.8
 
 
 ## get started
