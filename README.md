@@ -35,7 +35,7 @@ $ exit
 #### http://127.0.0.1:10080/  へ接続する。
 
 
-#### ※MySQLに接続したい
+#### ※MySQLに接続したい時
 ```
 $ docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'
 ```
