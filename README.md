@@ -14,7 +14,7 @@
 
 #### クローンする
 ```
-$ git clone https://github.com/k-iwashita-prtimes/posts_app.git
+$ git clone https://github.com/k-iwashita-prtimes/posts_app_laravel.git
 ```
 
 #### cloneしたディレクト配下へcdした後、dockerをbuild, upする。
