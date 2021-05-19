@@ -116,6 +116,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'user_id' => 'ログイン',
+        'title' => 'タイトル',
+        'body' => '本文',
+        'image1' => 'サムネイル',
+        'image2' => '画像',
+        'image3' => '画像',
+        'tag_id' => 'タグ'
+    ],
 
 ];
