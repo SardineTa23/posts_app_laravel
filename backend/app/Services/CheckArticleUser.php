@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Services;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
-use App\Models\Article;
 
 
 class CheckArticleUser
 {
-    public static function checkUser(Article $article)
+    public static function checkUser(int $user_id)
     {
-       if(auth()->id() === $article->user_id) {
+       if(auth()->id() === $user_id) {
            return true;
        } else {
            return false;
