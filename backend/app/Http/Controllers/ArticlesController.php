@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Services\CreateArticle;
+use App\Services\CheckArticleUser;
+
 
 class ArticlesController extends Controller
 {
@@ -18,7 +20,6 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
         $articles = Article::all();
         return view('articles.index', compact('articles'));
     }
@@ -59,7 +60,7 @@ class ArticlesController extends Controller
         $this->validate($request, $rules);
 
         $article = CreateArticle::create($request);
-        return redirect('/');
+        return redirect()->route('articles.show', ['article' => $article->id]);
     }
 
     /**
@@ -70,9 +71,12 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
-        $thumbnail = Image::find($article->thumbnail_id);
-        return view('articles.show', compact('article', 'thumbnail'));
+        if ($article = Article::find($id)) {
+            $thumbnail = Image::find($article->thumbnail_id);
+            return view('articles.show', compact('article', 'thumbnail'));
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -83,7 +87,12 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        if ($article && CheckArticleUser::checkUser($article)) {
+            return view('articles.edit', compact('article'));
+        } else {
+            return redirect("/");
+        }
     }
 
     /**
@@ -95,7 +104,21 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+        if ($article && CheckArticleUser::checkUser($article)) {
+            $rules = [
+                'user_id' => 'required|integer',
+                'title' => ['required'],
+                'body' => ['required'],
+            ];
+            $this->validate($request, $rules);
+            $article->title = $request->title;
+            $article->body = $article->body;
+            $article->save();
+            return redirect()->route('articles.show', ['article' => $article->id]);
+        } else {
+            return redirect("/");
+        }
     }
 
     /**
@@ -106,6 +129,12 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        if ($article && CheckArticleUser::checkUser($article)) {
+            $article->delete();
+            return redirect('/');
+        } else {
+            return redirect('/');
+        }
     }
 }
