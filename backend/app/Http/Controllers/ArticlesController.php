@@ -6,9 +6,10 @@ use App\Models\Article;
 use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Requests\ArticleRequest;
 use App\Services\CreateArticle;
 use App\Services\CheckArticleUser;
+
 
 
 class ArticlesController extends Controller
@@ -46,21 +47,15 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $rules = [
-            'user_id' => 'required|integer',
-            'title' => ['required'],
-            'body' => ['required'],
-            'image1' => ['required', 'file', 'mimes:png,jpeg,gif,jpg'],
-            'image2' => ['file', 'mimes:png,jpeg,gif,jpg'],
-            'image3' => ['file', 'mimes:png,jpeg,gif,jpg'],
-            'tag_id' => ['required']
-        ];
-        $this->validate($request, $rules);
-
-        $article = CreateArticle::create($request);
-        return redirect()->route('articles.show', ['article' => $article->id]);
+        $validated = $request->validated();
+        if (Auth::user() && strval(Auth::user()->id) === $validated['user_id']) {
+            $article = CreateArticle::create($validated);
+            return redirect()->route('articles.show', ['article' => $article->id]);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -88,7 +83,7 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        if ($article && CheckArticleUser::checkUser($article)) {
+        if ($article && CheckArticleUser::checkUser($article->user_id)) {
             return view('articles.edit', compact('article'));
         } else {
             return redirect("/");
@@ -102,19 +97,16 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
+        $validated = $request->validated();
         $article = Article::find($id);
-        if ($article && CheckArticleUser::checkUser($article)) {
-            $rules = [
-                'user_id' => 'required|integer',
-                'title' => ['required'],
-                'body' => ['required'],
-            ];
-            $this->validate($request, $rules);
-            $article->title = $request->title;
-            $article->body = $article->body;
+        if ($article && CheckArticleUser::checkUser($article->user_id)) {
+           
+            $article->title = $validated['title'];
+            $article->body = $validated['body'];
             $article->save();
+
             return redirect()->route('articles.show', ['article' => $article->id]);
         } else {
             return redirect("/");
@@ -130,7 +122,7 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
-        if ($article && CheckArticleUser::checkUser($article)) {
+        if ($article && CheckArticleUser::checkUser($article->user_id)) {
             $article->delete();
             return redirect('/');
         } else {

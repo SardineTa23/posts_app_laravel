@@ -17,13 +17,21 @@
 $ git clone https://github.com/k-iwashita-prtimes/posts_app_laravel.git
 ```
 
-#### cloneしたディレクト配下へcdした後、dockerをbuild, upする。
+### makefileの中身を走らせる
+```
+$ make init 
+```
+
+
+
+### または、以下の内容を実行する
+##### cloneしたディレクト配下へcdした後、dockerをbuild, upする。
 ```
 $ docker compose build --no-cache
 $ docker compose up -d 
 ```
 
-#### dockerコンテナの中で、必要なファイルの生成, migrationを行う
+##### dockerコンテナの中で、必要なファイルの生成, migrationを行う
 ```
 $ docker compose exec app bash
 $ composer install
@@ -38,7 +46,7 @@ $ composer dump-autoload
 $ exit 
 ```
 
-#### http://127.0.0.1:10080/  へ接続する。
+### http://127.0.0.1:10080/  へ接続する。
 
 
 #### ※MySQLに接続したい時
