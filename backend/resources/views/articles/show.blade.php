@@ -14,7 +14,27 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <img src="/storage/{{ $article->id }}/{{ $thumbnail->url }}" alt="">
+                        <div class="card">
+                            <div class="card-header">
+                                <p>{{ $article->title }}</p>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <label for="">Body</label>
+                                    <p>{{ $article->body }}</p><br>
+                                </div><br>
+                                <div>
+                                    <label for="">Images</label><br>
+                                    @foreach ($article->images as $image)
+                                        <img style="width: 200px" src="/storage/{{ $article->id }}/{{ $image->url }}" alt="">
+                                    @endforeach
+                                </div><br>
+                                <div>
+                                    <label for="">User</label><br>
+                                    <p>{{ $article->user->name }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

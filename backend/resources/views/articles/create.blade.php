@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Post New</div>
+                    <div class="card-header">Article New</div>
 
                     <div class="card-body">
                         @if (session('status'))

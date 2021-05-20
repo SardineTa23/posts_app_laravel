@@ -34,30 +34,7 @@ class CreateArticle
             }
             
         });
-        // DB::beginTransaction();
-        // try {
-        //     $article = Article::create($request->all());
-        //     $imgs = ['image2', 'image3'];
 
-        //     if (!empty($request->image1)) {
-        //         $file = $request->file('image1');
-        //         $article->thumbnail_id = CreateImage::create($file, $article->id);
-        //         $article->save();
-        //     }
-
-        //     foreach ($imgs as $img) {
-        //         $file = $request->file($img);
-        //         if ($file) {
-        //             CreateImage::create($file, $article->id);
-        //         }
-        //     }
-
-        //     foreach ($request->tag_id as $tag_id) {
-        //         CreateArticleTagRelationship::create($tag_id, $article->id);
-        //     }
-        //     DB::commit();
-        // } catch (\Exception $e) {
-        //     DB::rollback();
-        // }
+        return $article;
     }
 }
