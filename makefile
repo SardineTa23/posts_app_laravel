@@ -11,3 +11,4 @@ init:
 	docker-compose exec app npm install
 	docker-compose exec app npm run dev
 	docker-compose exec app composer dump-autoload
+	

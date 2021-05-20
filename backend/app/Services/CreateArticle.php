@@ -16,14 +16,14 @@ class CreateArticle
         $imgs = ['image2', 'image3'];
         DB::transaction(function () use ($article, $formData, $imgs) {
             $article->save();
-            if (!array_key_exists('image1', $formData)) {
+            if (array_key_exists('image1', $formData)) {
                 $file = $formData['image1'];
                 $article->thumbnail_id = CreateImage::create($file, $article->id);
                 $article->save();
             }
 
             foreach ($imgs as $img) {
-                if (!array_key_exists($img, $formData)) {
+                if (array_key_exists($img, $formData)) {
                     $file = $formData[$img];
                     CreateImage::create($file, $article->id);
                 }
