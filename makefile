@@ -10,4 +10,4 @@ init:
 	docker-compose exec app php artisan db:seed
 	docker-compose exec app npm install
 	docker-compose exec app npm run dev
-	docker-compose exec composer dump-autoload
+	docker-compose exec app composer dump-autoload
