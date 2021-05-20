@@ -20,7 +20,6 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
         $articles = Article::all();
         return view('articles.index', compact('articles'));
     }
@@ -72,9 +71,12 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
-        $thumbnail = Image::find($article->thumbnail_id);
-        return view('articles.show', compact('article', 'thumbnail'));
+        if ($article = Article::find($id)) {
+            $thumbnail = Image::find($article->thumbnail_id);
+            return view('articles.show', compact('article', 'thumbnail'));
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -86,7 +88,7 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        if (CheckArticleUser::checkUser($article)) {
+        if ($article && CheckArticleUser::checkUser($article)) {
             return view('articles.edit', compact('article'));
         } else {
             return redirect("/");
@@ -103,7 +105,7 @@ class ArticlesController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
-        if (CheckArticleUser::checkUser($article)) {
+        if ($article && CheckArticleUser::checkUser($article)) {
             $rules = [
                 'user_id' => 'required|integer',
                 'title' => ['required'],
@@ -127,9 +129,8 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
         $article = Article::find($id);
-        if (CheckArticleUser::checkUser($article)) {
+        if ($article && CheckArticleUser::checkUser($article)) {
             $article->delete();
             return redirect('/');
         } else {
