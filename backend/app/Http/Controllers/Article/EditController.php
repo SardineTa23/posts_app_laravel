@@ -3,19 +3,14 @@
 namespace App\Http\Controllers\Article;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
-use App\Services\Article\CheckArticleUser;
-use Illuminate\Http\Request;
+use App\Services\Article\EditArticle;
+
 
 class EditController extends Controller
 {
     public function __invoke($id)
     {
-        $article = Article::find($id);
-        if ($article && CheckArticleUser::checkUser($article->user_id)) {
-            return view('articles.edit', compact('article'));
-        } else {
-            return redirect("/");
-        }
+        $article = EditArticle::edit($id);
+        return view('articles.edit', compact('article'));
     }
 }
