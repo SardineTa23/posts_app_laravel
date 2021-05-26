@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Image;
 
 use App\Models\Image;
-use Illuminate\Http\Request;
-
 
 class CreateImage
 {
-    public static function create($file, $article_id)
+    public static function create($file, int $article_id)
     {
         $micro = explode(" ", microtime());
         $date = date("Ymd_His", $micro[1]) . '_' . (explode('.', $micro[0])[1]);

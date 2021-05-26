@@ -27,7 +27,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            @foreach ($articles as $article)    
+                            @foreach ($articles as $article)   
                                 <tbody>
                                     <tr>
                                         <td>{{ $article->id }}</td>
@@ -36,11 +36,11 @@
                                         <td>{{ $article->title }}</td>
                                         <td>{{ $article->created_at }}</td>
                                         <th><a class="btn btn-light"
-                                                href="{{ route('articles.show', ['article' => $article->id]) }}">Show</a>
+                                                href="{{ route('articles.show', ['id' => $article->id]) }}">Show</a>
                                         </th>
                                         @if (auth()->id() === $article->user_id)
                                             <th><a class='btn btn-success'
-                                                    href="{{ route('articles.edit', ['article' => $article->id]) }}">Edit</a>
+                                                    href="{{ route('articles.edit', ['id' => $article->id]) }}">Edit</a>
                                             </th>
                                             <th>
                                                 {{ Form::open(['url' => "/articles/$article->id", 'method' => 'POST']) }}

@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('articles', 'ArticlesController');
-Route::get('/', 'ArticlesController@index');
+
+
+
+Route::get('/', 'Article\IndexController')->name('articles.index');
+Route::get('articles/{id}', 'Article\ShowController')->name('articles.show');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('articles/create', 'Article\CreateController')->name('articles.create');
+    Route::post('articles', 'Article\StoreController')->name('articles.store');
+    Route::get('articles/{id}/edit', 'Article\EditController')->name('articles.edit');
+    Route::patch('articles/{id}', 'Article\UpdateController')->name('articles.update');
+    Route::delete('articles/{id}', 'Article\DestroyController')->name('articles.destroy');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

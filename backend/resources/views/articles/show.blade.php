@@ -30,6 +30,12 @@
                                     @endforeach
                                 </div><br>
                                 <div>
+                                    <label for="">Tags</label><br>
+                                    @foreach ($article->tags as $tag)
+                                        <p style="display: inline-block">{{ $tag->name }}</p>
+                                    @endforeach
+                                </div>
+                                <div>
                                     <label for="">User</label><br>
                                     <p>{{ $article->user->name }}</p>
                                 </div>
