@@ -33,9 +33,7 @@
                                 <div>
                                     <h3 for="">Tags</h3><br>
                                     @foreach ($article->tags as $tag)
-                                        <p style="display: inline-block;">
-                                          {{ $tag->name }}
-                                        </p>
+                                        <p style="display: inline-block">{{ $tag->name }}</p>
                                     @endforeach
                                 </div>
                                 <div>

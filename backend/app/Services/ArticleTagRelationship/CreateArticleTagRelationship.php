@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\ArticleTagRelationship;
 
 use App\Models\ArticleTagRelationship;
-use App\Models\Tag;
 
 
 class CreateArticleTagRelationship
