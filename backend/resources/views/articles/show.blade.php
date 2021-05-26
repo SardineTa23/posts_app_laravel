@@ -20,23 +20,24 @@
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <label for="">Body</label>
+                                    <h3 for="">Body</h3>
                                     <p>{{ $article->body }}</p><br>
                                 </div><br>
                                 <div>
-                                    <label for="">Images</label><br>
+                                    <h3 for="">Images</h3><br>
                                     @foreach ($article->images as $image)
-                                        <img style="width: 200px" src="/storage/{{ $article->id }}/{{ $image->url }}" alt="">
+                                        <img style="width: 200px" src="/storage/{{ $article->id }}/{{ $image->url }}"
+                                            alt="">
                                     @endforeach
                                 </div><br>
                                 <div>
-                                    <label for="">Tags</label><br>
+                                    <h3 for="">Tags</h3><br>
                                     @foreach ($article->tags as $tag)
                                         <p style="display: inline-block">{{ $tag->name }}</p>
                                     @endforeach
                                 </div>
                                 <div>
-                                    <label for="">User</label><br>
+                                    <h3 for="">User</h3><br>
                                     <p>{{ $article->user->name }}</p>
                                 </div>
                             </div>

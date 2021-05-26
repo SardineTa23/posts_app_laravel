@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Article;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Services\Article\StoreArticle;
-use Illuminate\Support\Facades\Auth;
 
 class StoreController extends Controller
 {
