@@ -4,7 +4,7 @@ namespace App\Services\Article;
 
 use App\Models\Article;
 
-class ArticleUpdate
+class UpdateArticle
 {
     public static function update(Article $article, array $validated)
     {

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Auth::routes();
 Route::get('/', 'Article\IndexController')->name('articles.index');
-Route::get('articles/{id}', 'Article\ShowController')->name('articles.show');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('articles/create', 'Article\CreateController')->name('articles.create');
@@ -26,5 +26,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('articles/{id}', 'Article\DestroyController')->name('articles.destroy');
 });
 
-Auth::routes();
-
+Route::get('articles/{id}', 'Article\ShowController')->name('articles.show');

@@ -14,7 +14,7 @@ class StoreController extends Controller
         $validated = $request->validated();
         if (Auth::user() && strval(Auth::user()->id) === $validated['user_id']) {
             $article = CreateArticle::create($validated);
-            return redirect()->route('articles.show', ['article' => $article->id]);
+            return redirect()->route('articles.show', ['id' => $article->id]);
         } else {
             return redirect('/');
         }

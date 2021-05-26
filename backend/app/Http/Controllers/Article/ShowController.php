@@ -14,7 +14,7 @@ class ShowController extends Controller
             $thumbnail = Image::find($article->thumbnail_id);
             return view('articles.show', compact('article', 'thumbnail'));
         } else {
-            return redirect('/');
+            return abort(404);
         }
     }
 }
