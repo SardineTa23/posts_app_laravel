@@ -37,6 +37,8 @@ $ docker compose exec app bash
 $ composer install
 $ cp .env.example .env
 $ php artisan key:generate
+$ cp .env.example .env.testing
+$ php artisan key:generate --env=testing
 $ php artisan migrate
 $ php artisan db:seed
 $ php artisan storage:link
