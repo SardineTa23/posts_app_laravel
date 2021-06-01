@@ -13,8 +13,9 @@ class StoreArticle
 {
     public static function create(array $formData)
     {
-        if (Auth::user() && strval(Auth::user()->id) === $formData['user_id']) {
+        if (Auth::user() && Auth::user()) {
             $article = new Article($formData);
+            $article->user_id = Auth::user()->id;
             $imgs = ['image2', 'image3'];
             DB::transaction(function () use ($article, $formData, $imgs) {
                 $article->save();
@@ -31,8 +32,10 @@ class StoreArticle
                     }
                 }
 
-                foreach ($formData['tag_id'] as $tag_id) {
-                    CreateArticleTagRelationship::create($tag_id, $article->id);
+                if (!empty($formData['tag_id'])) {
+                    foreach ($formData['tag_id'] as $tag_id) {
+                        CreateArticleTagRelationship::create($tag_id, $article->id);
+                    }
                 }
             });
 

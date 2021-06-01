@@ -27,12 +27,19 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            @foreach ($articles as $article)   
+                            @foreach ($articles as $article)
                                 <tbody>
                                     <tr>
                                         <td>{{ $article->id }}</td>
-                                        <td><img style='height: 100px;'
-                                                src="/storage/{{ $article->id }}/{{ Image::find($article->thumbnail_id)->url }}" alt=""></td>
+                                        <td>
+                                            @if ($article->thumbnail_id)
+                                                <img style='height: 100px;'
+                                                    src="/storage/{{ $article->id }}/{{ Image::find($article->thumbnail_id)->url }}"
+                                                    alt="">
+                                            @else
+                                                <img style='height: 100px;' src="images/noimage.png" alt="">
+                                            @endif
+                                        </td>
                                         <td>{{ $article->title }}</td>
                                         <td>{{ $article->created_at }}</td>
                                         <th><a class="btn btn-light"
