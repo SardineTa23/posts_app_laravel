@@ -54,3 +54,8 @@ $ exit
 #### ※MySQLに接続したい時
 ```
 $ docker-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'
+
+
+#### ※テストをしたい場合
+```
+$ docker-compose exec app composer test
