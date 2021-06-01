@@ -25,7 +25,6 @@
                         @endif
 
                         {{ Form::open(['url' => '/articles', 'method' => 'POST', 'files' => true]) }}
-                        {{ Form::hidden('user_id', auth()->id()) }}
 
                         {{ Form::label('title', 'タイトル') }}<br>
                         {{ Form::text('title', '') }}<br>

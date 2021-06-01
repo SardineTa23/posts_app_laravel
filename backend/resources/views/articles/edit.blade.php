@@ -26,7 +26,6 @@
 
                         {{ Form::Model($article, ['route' => ['articles.update', $article->id]]) }}
                         {{ Form::hidden('_method', 'PATCH') }}
-                        {{ Form::hidden('user_id', auth()->id()) }}
                         
                         {{ Form::label('title', 'タイトル') }}<br>
                         {{ Form::text('title') }}<br>

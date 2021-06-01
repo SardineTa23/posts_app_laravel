@@ -28,18 +28,15 @@ class ArticleRequest extends FormRequest
         switch ($route) {
             case 'articles.store':
                 $rules = [
-                    'user_id' => 'required|integer',
                     'title' => ['required'],
                     'body' => ['required'],
-                    'image1' => ['required', 'file', 'mimes:png,jpeg,gif,jpg'],
+                    'image1' => ['file', 'mimes:png,jpeg,gif,jpg'],
                     'image2' => ['file', 'mimes:png,jpeg,gif,jpg'],
-                    'image3' => ['file', 'mimes:png,jpeg,gif,jpg'],
-                    'tag_id' => ['required']
+                    'image3' => ['file', 'mimes:png,jpeg,gif,jpg']
                 ];
                 break;
             case 'articles.update': 
                 $rules = [
-                    'user_id' => 'required|integer',
                     'title' => ['required'],
                     'body' => ['required'],
                 ];
