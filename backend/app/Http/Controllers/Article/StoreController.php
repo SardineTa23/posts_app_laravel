@@ -8,10 +8,9 @@ use App\Services\Article\StoreArticle;
 
 class StoreController extends Controller
 {
-    public function __invoke(ArticleRequest $request)
+    public function __invoke(ArticleRequest $request, StoreArticle $servise)
     {
-        $validated = $request->validated();
-        $article = StoreArticle::create($validated);
+        $article = $servise->create($request);
         return redirect()->route('articles.show', ['id' => $article->id]);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Services\Article;
 use App\Models\Article;
 
-
 class EditArticle
 {
     public static function edit(int $id) 

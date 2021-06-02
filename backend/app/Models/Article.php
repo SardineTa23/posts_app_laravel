@@ -9,6 +9,8 @@ use App\Models\ArticleTagRelationship;
 class Article extends Model
 {
     use HasFactory;
+    protected $title;
+    protected $body;
 
     protected $fillable = ['title', 'body'];
 

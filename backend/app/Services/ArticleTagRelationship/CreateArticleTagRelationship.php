@@ -4,7 +4,6 @@ namespace App\Services\ArticleTagRelationship;
 
 use App\Models\ArticleTagRelationship;
 
-
 class CreateArticleTagRelationship
 {
     public static function create($tag_id, $article_id)
